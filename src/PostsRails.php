@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * Class PostsRails
+ */
 class PostsRails
 {
+
+    /**
+     * @param $posts
+     * @param $rails
+     * @return string
+     */
     public function fenceLength($posts, $rails)
     {
+        $posts = floor($posts);
+        $rails = floor($rails);
         if ($posts < 2) {
             return 'Error: The minimum number of posts is 2';
         }
@@ -15,27 +26,24 @@ class PostsRails
         $length = 1.7;
         $posts -= 2;
         $rails -= 1;
-        // stop when run out posts or rails
-        while ($posts > 0 && $rails > 0) {
-            $length += 1.6;
-            $posts -= 1;
-            $rails -= 1;
-        }
+        $length += min($posts, $rails) * 1.6;
         $result .= "$length meters long.";
         return $result;
     }
 
+    /**
+     * @param $length
+     * @return string
+     */
     public function postsRailsNeeded($length)
     {
+        $length = round($length, 2);
         $result = "To make a fence $length meters long you need ";
         $posts = 2;
         $rails = 1;
         $length -= 1.7;
-        while ($length > 0) {
-            $posts ++;
-            $rails ++;
-            $length -= 1.6;
-        }
+        $posts += ceil($length / 1.6);
+        $rails += ceil($length / 1.6);
 
         $result .= "$posts posts and $rails rails.";
         return $result;

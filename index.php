@@ -4,7 +4,7 @@ $a = new PostsRails();
 if (isset($_POST['posts'])) {
     $message = $a->fenceLength($_POST['posts'], $_POST['rails']);
 }
-if (isset($_POST['length']) && $_POST['length'] != '' ) {
+if (isset($_POST['length']) && $_POST['length'] != '') {
     $message = $a->postsRailsNeeded($_POST['length']);
 }
 ?>
