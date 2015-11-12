@@ -37,6 +37,9 @@ class PostsRails
      */
     public function postsRailsNeeded($length)
     {
+        if ($length <= 0) {
+            return 'Error: incorrect input';
+        }
         $length = round($length, 2);
         $result = "To make a fence $length meters long you need ";
         $posts = 2;
